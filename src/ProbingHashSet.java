@@ -156,10 +156,6 @@ public class ProbingHashSet<E>
         return array.length;
     }
 
-    private enum ProbeMode{
-        LINEAR, DOUBLE, QUADRATIC;
-    }
-
     private static class HashEntry<E> {
         //Implement this class
     }
