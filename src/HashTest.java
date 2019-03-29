@@ -8,12 +8,11 @@
 //
 //     test1: using a sorted ArrayList
 //     test2: using Java's TreeSet (binary search tree)
-//     test3: using Java's HashSet
-//     test4: using our HashSet
+//     test3: using Java's ChainingHashSet
+//     test4: using our ChainingHashSet
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.*;
+import java.io.*;
 
 public class HashTest {
     public static void main(String[] args) throws FileNotFoundException {
@@ -22,7 +21,7 @@ public class HashTest {
         Scanner input = new Scanner(new File(console.nextLine()));
         System.out.println("Which test? (1=ArrayList,  2=TreeSet,");
         System.out.println("             3=Java's HashSet, 4=our HashSet DOUBLE, ");
-        System.out.print("             5=our HashSet QUAD, 6=our Chaining HashSet)? ");
+        System.out.print("             5=our HashSet QUAD, 6=our ChainingHashSet)? ");
         int which = console.nextInt();
 
         List<String> data = new ArrayList<String>();
@@ -86,10 +85,10 @@ public class HashTest {
         System.out.println("TreeSet time = " + elapsed);
     }
 
-    // run a test for Java's implementation of HashSet
+    // run a test for Java's implementation of ChainingHashSet
     public static void test3(List<String> data, int max) {
         long start = System.currentTimeMillis();
-        HashSet<String> s = new HashSet<String>(max);
+        java.util.HashSet<String> s = new java.util.HashSet<String>(max);
         for (int i = 0; i < data.size(); i++) {
             if (i % 5 == 0) {
                 s.remove(data.get(i));
@@ -101,10 +100,10 @@ public class HashTest {
         }
         System.out.println("list size after = " + s.size());
         double elapsed = (System.currentTimeMillis() - start) / 1000.0;
-        System.out.println("Java's HashSet time = " + elapsed);
+        System.out.println("Java's ChainingHashSet time = " + elapsed);
     }
 
-    // run a test for our implementation of HashSet
+    // run a test for our implementation of ChainingHashSet
     public static void test4(List<String> data, int max) {
         long start = System.currentTimeMillis();
         ProbingHashSet<String> s = new ProbingHashSet<>(max, ProbeMode.DOUBLE);
@@ -122,7 +121,7 @@ public class HashTest {
         System.out.println("our DOUBLE ProbingHashSet time = " + elapsed);
     }
 
-    // run a test for our implementation of HashSet
+    // run a test for our implementation of ChainingHashSet
     public static void test5(List<String> data, int max) {
         long start = System.currentTimeMillis();
         ProbingHashSet<String> s = new ProbingHashSet<>(max, ProbeMode.QUADRATIC);
@@ -140,17 +139,17 @@ public class HashTest {
         System.out.println("our QUAD ProbingHashSet time = " + elapsed);
     }
 
-    // run a test for our implementation of HashSet
+    // run a test for our implementation of ChainingHashSet
     public static void test6(List<String> data, int max) {
         long start = System.currentTimeMillis();
-        SeparateChainingHashSet<String> s = new SeparateChainingHashSet<>(max);
+        ChainingHashSet<String> s = new ChainingHashSet<>(max);
         for (int i = 0; i < data.size(); i++) {
             if (i % 5 == 0) {
                 s.remove(data.get(i));
             } else if (i % 5 == 1) {
                 s.contains(data.get(i));
             } else {
-                s.insert(data.get(i));
+                s.add(data.get(i));
             }
         }
         System.out.println("list size after = " + s.size());
