@@ -1,24 +1,16 @@
-// Quick and dirty implementation of ChainingHashSet.
-
+//ChainingHashSet where each element in the hash table is a linked list
+//This does NOT use any Java Collection
 public class ChainingHashSet<E> {
     private static final double LOAD_FACTOR_THRESHOLD = 0.75;
     private HashNode<E>[] array;
     private int size;
 
     public ChainingHashSet(int capacity) {
-        size = 0;
-        array = new HashNode[Utils.nextPrime(capacity)];
+        //Implement me
     }
 
     public void add(E value) {
-        if (!contains(value)) {
-            int i = findPos(value);
-            array[i] = new HashNode(value, array[i]);
-            size++;
-        }
-        if(size > array.length * LOAD_FACTOR_THRESHOLD){
-            rehash();
-        }
+        //Implement me
     }
 
     private void rehash(){
@@ -29,40 +21,16 @@ public class ChainingHashSet<E> {
         size = 0;
 
         // Copy table over
-        for( HashNode<E> entry : oldArray ) {
-            while(entry != null){
-                this.add(entry.element);
-                entry = entry.next;
-            }
-        }
+        //Implement me
     }
 
     public boolean contains(E value) {
-        int i = findPos(value);
-        HashNode<E> current = array[i];
-        while (current != null) {
-            if (current.element.equals(value)) {
-                return true;
-            }
-            current = current.next;
-        }
-        return false;
+        //Implement me
+        return false; //overwrite this code
     }
 
     public void remove(E value) {
-        if (contains(value)) {
-            int i = findPos(value);
-            if (array[i].element.equals(value)) {
-                array[i] = array[i].next; //updating the first
-            } else {
-                HashNode current = array[i];
-                while (!current.next.element.equals(value)) {
-                    current = current.next;
-                }
-                current.next = current.next.next;
-            }
-            size--;
-        }
+        //Implement me
     }
 
     public int size() {
@@ -70,23 +38,18 @@ public class ChainingHashSet<E> {
     }
 
     private int findPos(E value) {
-        int pos = value.hashCode() % array.length;
-        if(pos < 0)
-            pos += array.length;
-        return pos;
+        //Implement me
+        return -1; //Overwrite this code
+    }
+
+    /**
+     * Make the hash table logically empty.
+     */
+    public void makeEmpty() {
+        //Implement this method
     }
 
     private static class HashNode<E> {
-        public E element;
-        public HashNode next;
-
-        public HashNode(E element){
-            this(element, null);
-        }
-
-        public HashNode(E element, HashNode next) {
-            this.element = element;
-            this.next = next;
-        }
+        //Implement me
     }
 }
