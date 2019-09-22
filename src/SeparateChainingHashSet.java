@@ -2,6 +2,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 // SeparateChaining Hash table class
+// This class uses Java's List and LinkedList implementation
 //
 // CONSTRUCTION: an approximate initial size or default of 101
 //
